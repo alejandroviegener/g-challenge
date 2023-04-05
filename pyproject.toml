@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "g-challenge"
+version = "0.1.0"
+description = "Data Migration System"
+authors = ["Alejandro Viegener <alejandro.viegener@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.2"
+black = "^23.3.0"
+mypy = "^1.1.1"
+flake8 = "5.0.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
