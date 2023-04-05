@@ -1,7 +1,7 @@
 
 import pytest
 
-from app.employee.employee import Employee
+from app.domain import Employee
 
 
 def test_should_create_new_employee():
