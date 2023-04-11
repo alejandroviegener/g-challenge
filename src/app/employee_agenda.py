@@ -46,7 +46,16 @@ class EmployeeAgenda:
     def add(self, employees: List, jobs: List, departments: List):
         """Adds a list of employees, jobs and departments
         Should rollback if any of the elements cannot be added
+        employees list, jobs lists and departments lists should not contain duplicates
+        employees list, job list and departments list should have length less than 1000
         """
+
+        self._check_if_too_many(jobs)
+        self._check_if_too_many(departments)
+        self._check_if_too_many(employees)
+        self._check_if_duplicate_ids(employees)
+        self._check_if_duplicate_ids(jobs)
+        self._check_if_duplicate_ids(departments)
         
         for job in jobs:
             if self.get_job(job.id):
@@ -69,6 +78,15 @@ class EmployeeAgenda:
         for employee in employees:
             self.add_employee(employee)
     
+    def _check_if_duplicate_ids(self, items: List):
+        ids = [item.id for item in items]
+        if len(ids) != len(set(ids)):
+            raise ValueError("Duplicate ids")
+    
+    def _check_if_too_many(self, items: List):
+        if len(items) > 1000:
+            raise ValueError("List length exceeded")
+
     def size(self) -> tuple:
         """employees, jobs, departments"""
         return len(self._employees), len(self._jobs), len(self._departments)
