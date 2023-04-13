@@ -1,12 +1,14 @@
 from datetime import datetime
 
+from .department import Department
+from .job import Job
+
 class Employee:
 
-    def __init__(self, id: int, first_name: str, last_name: str, hiring_date: str, job_id: int, department_id: int):
+    def __init__(self, id: int, first_name: str, last_name: str, hiring_date: str, job: Job, department: Department):
         """
         Raises ValueError if hiring_date is not in ISO format
         Raises ValueError if id is negative
-        Raises ValueError if job_id is negative
         Raises ValueError if first_name is empty
         Raises ValueError if last_name is empty
         """
@@ -14,8 +16,6 @@ class Employee:
         # Preconditions
         self._fail_if_not_iso_format(hiring_date)
         self._fail_if_negative(id)
-        self._fail_if_negative(job_id)
-        self._fail_if_negative(department_id)
         self._fail_if_empty_string(first_name)
         self._fail_if_empty_string(last_name)
 
@@ -23,20 +23,20 @@ class Employee:
         self.first_name = first_name
         self.last_name = last_name
         self._hiring_date = hiring_date
-        self._job_id = job_id
-        self._department_id = department_id
+        self._job = job
+        self._department = department
 
     @property
     def hiring_date(self):
         return self._hiring_date
     
     @property
-    def job_id(self):
-        return self._job_id
+    def job(self):
+        return self._job
     
     @property
-    def department_id(self):
-        return self._department_id
+    def department(self):
+        return self._department
 
     @staticmethod
     def _fail_if_not_iso_format(hiring_date: str) -> None:

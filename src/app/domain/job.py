@@ -12,6 +12,12 @@ class Job:
         self._id = id
         self._name = name
 
+    def __eq__(self, other) -> bool:    
+        return self.id == other.id and self.name == other.name
+    
+    def __ne__(self, other) -> bool:    
+        return not self.__eq__(other)
+
     @staticmethod
     def _fail_if_empty(name):
         if not name.strip():
